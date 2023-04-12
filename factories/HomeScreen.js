@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {FlatList, View, Text, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import LoginScreen from './LoginScreen';
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +29,6 @@ export default class HomeScreen extends React.Component {
       id = IdinStorage ? IdinStorage : '';
       return id;
     });
-    return id;
   };
 
   handleSubmitButton = () => {
@@ -38,8 +37,8 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View
-        style={{
+(this.getuserid()=='addone') ? (
+  <View style={{
           height: 80,
           backgroundColor: '#34aeeb',
           alignItems: 'stretch',
@@ -54,7 +53,10 @@ export default class HomeScreen extends React.Component {
           }}>
           Home screen content current plan details
         </Text>
+
       </View>
+):(<LoginScreen />)
+    
     );
   }
 }
