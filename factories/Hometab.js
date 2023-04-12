@@ -8,17 +8,6 @@ import ContactUs from './ContactUs';
 import imhome from '../assets/home.jpg';
 import imcl from '../assets/changpln.png';
 import imct from '../assets/contact.png';
-function Home() {
-  return <HomeScreen />;
-}
-
-function ChangePln({navigation}) {
-  return <ChangePlan />;
-}
-
-// function Story({navigation}) {
-//   return <ContactUs />;
-// }
 
 const Tab = createBottomTabNavigator();
 
