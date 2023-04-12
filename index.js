@@ -9,4 +9,5 @@ import HomeScreen from './factories/HomeScreen';
 import ChangePlan from './factories/ChangePlan'
 import ContactUs from './factories/ContactUs'
 import HomeTabs from './factories/Hometab'
-AppRegistry.registerComponent(appName, () => SplashScreen);
+import SinupNav from './factories/Singinupnav'
+AppRegistry.registerComponent(appName, () => SinupNav);

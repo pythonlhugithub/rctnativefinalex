@@ -39,18 +39,23 @@ export default class ContactUs extends React.Component {
 
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: '#34aeeb'}}>
-        <Text
-          style={{
-            marginTop: 20,
-            justifyContent: 'center',
-            fontSize: 25,
-            fontWeight: 'bold',
-            color: 'white',
-          }}>
-          Contact Us
-        </Text>
-      </View>
+      <View
+              style={{
+                height: 80,
+                backgroundColor: '#34aeeb',
+                alignItems: 'stretch',
+              }}>
+              <Text
+                style={{
+                  justifyContent: 'center',
+                  alignSelf: 'center',
+                  fontSize: 25,
+                  fontWeight: 'bold',
+                  color:'white'
+                }}>
+                Contact Us
+              </Text>
+            </View>
     );
   }
 }

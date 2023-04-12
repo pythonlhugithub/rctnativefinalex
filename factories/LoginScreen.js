@@ -9,8 +9,9 @@ import {
   TextInput,
   TouchableOpacity,
   Button,
+  Linking,
 } from 'react-native';
-
+import Axios from 'axios';
 import imy from '../assets/aio1.jpg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -18,7 +19,7 @@ import Loader from './Loader';
 
 export default class LoginScreen extends React.Component {
   constructor(navigation) {
-    super();
+    super(navigation);
     this.state = {
       User_Id: '',
       loading: true,
@@ -46,8 +47,13 @@ export default class LoginScreen extends React.Component {
     return id;
   };
 
-  handleSubmitButton = () => {
-    console.log('clicked');
+  handleSubmitButton = (pinnumber) => {
+
+  //  var ss=Axios('http://localhost:3000/data/?pinno='+pinnumber);
+  //  if(ss===null){
+  //   console.log('no successful, try again');
+  //  };
+
   };
 
   render() {
@@ -90,16 +96,18 @@ export default class LoginScreen extends React.Component {
                 placeholderTextColor="#8b9cb5"
                 autoCapitalize="sentences"
                 returnKeyType="next"
+                keyboardType="numeric"
                 blurOnSubmit={false}
               />
             </View>
 
-            <View style={{marginTop: 250, flex: 1}}>
+            <View style={{marginTop: 150, flex: 1}}>
               <Button
                 title="Log In"
                 style={styles.buttonStyle}
-                onPress={this.handleSubmitButton}
+                onPress={this.handleSubmitButton('hello')}
               />
+              <Text>Already have an account? </Text>
             </View>
           </KeyboardAvoidingView>
         </ScrollView>
@@ -141,6 +149,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   SectionStyle: {
+    marginTop:140,
     height: 80,
   },
 });

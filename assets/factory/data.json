@@ -1,0 +1,17 @@
+{"data":[
+    {"id":1, "name":"david huang", "Dob": "1988-01-01"},
+    {"id":2, "name":"david huang 2", "Dob": "1988-01-02"},
+    {"id":3, "name":"david huang 3", "Dob": "1988-01-03"},
+    {"id":4, "name":"david huang 4", "Dob": "1988-01-04"},
+    {"id":5, "name":"david huang 5", "Dob": "1988-01-05"},
+    {"id":6, "name":"david huang 6", "Dob": "1988-01-06"}
+],
+
+    "posts": [
+      { "id": 1, "title": "json-server", "author": "typicode" }
+    ],
+    "comments": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "profile": { "name": "typicode" }
+  }

@@ -10,12 +10,14 @@ import {
 
 import imy from '../assets/aio1.jpg'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import {useNavigation} from '@react-navigation/native'
 import Loader from './Loader'
-
+import HomeTabs from './Hometab'
+import LoginScreen from './LoginScreen'
 
 export default class SplashScreen extends React.Component {
-  constructor(navigation) {
-    super()
+  constructor(props) {
+    super(props)
     this.state = { 
       animating: true, 
       User_Id:''
@@ -44,9 +46,10 @@ export default class SplashScreen extends React.Component {
   render() {
        setTimeout(()=>{
        this.setState({animating:false})
-     }, 2000);
+     }, 5000);
+
       return (
-       (this.getuserid='addone'?(
+       (this.getuserid=''?(
             <SafeAreaView style={styles.container}>
              <ActivityIndicator
             animating={this.state.animating}
@@ -60,13 +63,19 @@ export default class SplashScreen extends React.Component {
          </View>
            ):null)}
          {(!this.state.animating?(  // this is the user id exist landing page
-            <View style={styles.login}>
-                 <Text>this is the existing user id landing page</Text>
-           
-             </View> 
-            
+                <View style={{alignItems:'stretch',marginBottom:0, width:410, height:700}}>
+                    <HomeTabs />
+                </View>
+               
           ):null)}
-         </SafeAreaView>):(<SafeAreaView><View><Text>this is the login page</Text></View></SafeAreaView>)) 
+         </SafeAreaView>):
+         (
+         <SafeAreaView>
+           <View style={{alignItems:'stretch',marginBottom:0, width:410, height:700}}>
+                    <LoginScreen />
+                </View>
+        </SafeAreaView>
+        )) 
   
   );
 
