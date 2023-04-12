@@ -12,7 +12,7 @@ import imy from '../assets/aio1.jpg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeTabs from './Hometab';
 import LoginScreen from './LoginScreen';
-
+import {NavigationContainer} from '@react-navigation/native'
 export default class SplashScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +24,6 @@ export default class SplashScreen extends React.Component {
 
   componentDidMount() {
     this.setUserid;
-    //console.log(this.props)
   }
 
   setUserid = () => {
@@ -52,7 +51,6 @@ export default class SplashScreen extends React.Component {
 
       <SafeAreaView style={styles.container}>
         <ActivityIndicator animating={this.state.animating} color="white" style={styles.activityIndicator}/> 
-
         {(this.state.animating?
         (<View style={styles.container}>
           <Image source={imy} style={styles.imgflex} />
@@ -60,10 +58,8 @@ export default class SplashScreen extends React.Component {
           <View style={{alignItems:'stretch',marginBottom:0, width:410, height:700}}>
           <HomeTabs />
           </View>
-        ))}
-              
+        ))}   
       </SafeAreaView>
-
 
     );
   }
