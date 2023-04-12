@@ -4,8 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default class ContactUs extends React.Component {
-  constructor(navigation) {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       User_Id: '',
       loading: true,

@@ -70,23 +70,6 @@ export default class LoginScreen extends React.Component {
             alignContent: 'center',
           }}>
           <KeyboardAvoidingView enabled>
-            <View
-              style={{
-                height: 80,
-                backgroundColor: '#34aeeb',
-                alignItems: 'stretch',
-              }}>
-              <Text
-                style={{
-                  justifyContent: 'center',
-                  alignSelf: 'center',
-                  fontSize: 25,
-                  fontWeight: 'bold',
-                  color:'white'
-                }}>
-                Log In
-              </Text>
-            </View>
             <View style={styles.SectionStyle}>
               <TextInput
                 style={styles.inputStyle}
@@ -107,7 +90,6 @@ export default class LoginScreen extends React.Component {
                 style={styles.buttonStyle}
                 onPress={this.handleSubmitButton('hello')}
               />
-              <Text>Already have an account? </Text>
             </View>
           </KeyboardAvoidingView>
         </ScrollView>

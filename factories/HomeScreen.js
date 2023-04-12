@@ -3,8 +3,8 @@ import {FlatList, View, Text, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class HomeScreen extends React.Component {
-  constructor(navigation) {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       User_Id: '',
       loading: true,
@@ -39,23 +39,23 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View
-      style={{
-        height: 80,
-        backgroundColor: '#34aeeb',
-        alignItems: 'stretch',
-      }}>
-      <Text
         style={{
-          justifyContent: 'center',
-          alignSelf: 'center',
-          fontSize: 25,
-          fontWeight: 'bold',
-          color:'white'
+          height: 80,
+          backgroundColor: '#34aeeb',
+          alignItems: 'stretch',
         }}>
-        Home
-      </Text>
-    </View>
-    );  
+        <Text
+          style={{
+            justifyContent: 'center',
+            alignSelf: 'center',
+            fontSize: 25,
+            fontWeight: 'bold',
+            color: 'white',
+          }}>
+          Home screen content current plan details
+        </Text>
+      </View>
+    );
   }
 }
 

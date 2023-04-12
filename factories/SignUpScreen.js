@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   TextInput,
   TouchableOpacity,
+  SafeAreaView,
   Button,
   Platform,
   Linking,
@@ -116,7 +117,7 @@ export default class SignUpScreen extends React.Component {
     // });  //issignup is clear
 
     return (
-      <View style={{flex: 1, backgroundColor: 'lightblue'}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: 'lightblue'}}>
         <ScrollView
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{
@@ -135,7 +136,7 @@ export default class SignUpScreen extends React.Component {
           </View> */}
           <KeyboardAvoidingView enabled>
             <View style={styles.SectionStyle}>
-              <View
+              {/* <View
                 style={{
                   height: 80,
                   backgroundColor: '#34aeeb',
@@ -150,7 +151,7 @@ export default class SignUpScreen extends React.Component {
                   }}>
                   Sign Up
                 </Text>
-              </View>
+              </View> */}
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={userName => this.setState({UserName: userName})}
@@ -217,7 +218,7 @@ export default class SignUpScreen extends React.Component {
             </Text>
           </View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }

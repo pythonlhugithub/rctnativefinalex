@@ -16,9 +16,9 @@ function ChangePln({navigation}) {
   return <ChangePlan />;
 }
 
-function Story({navigation}) {
-  return <ContactUs />;
-}
+// function Story({navigation}) {
+//   return <ContactUs />;
+// }
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +28,7 @@ function HomeTabs() {
       <Tab.Navigator>
         <Tab.Screen
           name="Home"
-          component={Home}
+          component={HomeScreen}
           options={{
             title: 'Home page',
             tabBarIcon: ({size, focused, color}) => {
@@ -38,7 +38,7 @@ function HomeTabs() {
         />
         <Tab.Screen
           name="ChangePlan"
-          component={ChangePln}
+          component={ChangePlan}
           options={{
             title: 'Change plan',
             tabBarIcon: (size, focused, color) => {

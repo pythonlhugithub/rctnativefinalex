@@ -2,11 +2,12 @@ import React from 'react';
 import {View, StyleSheet, Modal, ActivityIndicator} from 'react-native';
 
 export default class Loader extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {animating: true};
   }
-
+componentDidMount(){
+}
   render() {
     return (
       <Modal
