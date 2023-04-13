@@ -11,4 +11,4 @@ import ContactUs from './factories/ContactUs'
 import HomeTabs from './factories/Hometab'
 import SinupNav from './factories/Singinupnav'
 import Crudjs from './factories/Crudjs';
-AppRegistry.registerComponent(appName, () => Crudjs);
+AppRegistry.registerComponent(appName, () => HomeTabs);
