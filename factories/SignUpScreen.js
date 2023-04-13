@@ -13,6 +13,7 @@ import {
   Platform,
   Linking,
   Alert,
+  Modal,
 } from 'react-native';
 import {NavigationContainer, useTheme} from '@react-navigation/native';
 import imy from '../assets/aio1.jpg';
@@ -20,6 +21,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios';
 import LoginScreen from './LoginScreen';
 import Loader from './Loader';
+
+
+
+
 
 export default class SignUpScreen extends React.Component {
   constructor(props) {
@@ -33,7 +38,7 @@ export default class SignUpScreen extends React.Component {
       UserAge: 0,
       UserAddress: '',
       errorText: '',
-      isRegisterSuccess: false,
+      isvalid: false,
       nav: null,
     };
   }
@@ -56,7 +61,7 @@ export default class SignUpScreen extends React.Component {
 
   handleSubmitButton = () => {
     const iosUrl = 'http://localhost:5000';
-    const androidUrl = 'http://facebook.github.io/react-native/movies.json';
+    const androidUrl = 'http://10.0.2.2:5221/api/logins';
     const url0 = Platform.OS === 'ios' ? iosUrl : androidUrl;
 
     return Axios(url0)
@@ -92,6 +97,9 @@ export default class SignUpScreen extends React.Component {
       });
   };
 
+
+
+
   openexternalLogin = async () => {
     const url = 'https://google.com';
     try {
@@ -104,6 +112,7 @@ export default class SignUpScreen extends React.Component {
   openLogin = () => this.props.navigation.navigate('Login', {name: 'Login'});
 
   render() {
+
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'lightblue'}}>
         <ScrollView
