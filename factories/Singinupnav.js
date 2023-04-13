@@ -5,13 +5,26 @@ import SignUpScreen from './SignUpScreen'
 import LoginScreen from './LoginScreen'
 
 export default class SinupNav extends React.Component{
-constructor(){
-    super()
+constructor(props){
+    super(props);
+    this.state={
+        userid:'',
+        nav: '',
+    };
+    
+};
+
+componentDidMount(){
+      this.setState({nav: this.props.navigaiton})
+        console.log(this.props.nav);
+
 }
 
-   
     render(){
+
+      
         Stack=createNativeStackNavigator();
+
         return (
              <NavigationContainer>
                 <Stack.Navigator>

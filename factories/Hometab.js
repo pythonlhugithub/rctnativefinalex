@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 import {
   Pressable,
   SafeAreaView,
@@ -19,56 +19,44 @@ import imcl from '../assets/changpln.png';
 import imct from '../assets/contact.png';
 import imy from '../assets/aio1.jpg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import EncryptedStorage from '@react-native-async-storage/async-storage';
+import SinupNav from './Singinupnav';
 
 const Tab = createBottomTabNavigator();
 
 function HomeTabs(props) {
-  const setUsrid = () => {
-    AsyncStorage.setItem('User_Id', JSON.stringify('addone'));
-  };
-  setUsrid();
 
-  // const getuserid = async () => {
-  //   await AsyncStorage.getItem('User_Id').then(res => {
-  //     console.log(res)
-  //     return res;
-  //   });
-  // };
-  
   const removeItem = async () => {
     await AsyncStorage.clear();
   };
-  removeItem();
 
+  const setUsrid = () => {
+    removeItem(); //clean storage
+    AsyncStorage.setItem('User_Id', ''); //add userid
+  };
 
+  setUsrid(); //execute to insert idto storage
 
   const [animatingl, setAnimating] = React.useState(true);
-  const [gonext, setGonext] = React.useState(false);
   const [flag, setFlag] = React.useState('');
 
-  useEffect(()=>{
-  (
-    async()=>{
-     const x= await await AsyncStorage.getItem('User_Id').then(res => {
-      return res!=''?true:false;
-    });
-     setFlag(x);
-    })()}, [flag])
+  useEffect(() => {
+    (async () => {
+      const x = await await AsyncStorage.getItem('User_Id').then(res => {
+        console.log(res)
+        return res===null ? true : false;  //if userid exists, not null, go to home page
+      });
+      setFlag(x);
+    })();
+  }, [flag]);
 
-  // return (
-  //   <NavigationContainer>
-  //     {flag && <AuthNavigator />};
-  //   </NavigationContainer>
-  // );
-
-  console.log(flag)
+  // console.log(flag);
 
   setTimeout(() => {
     setAnimating(false);
   }, 2000);
 
   return (
+    (!flag?(
     <SafeAreaView>
       {animatingl ? (
         <View style={styles.container}>
@@ -130,7 +118,8 @@ function HomeTabs(props) {
         </View>
       )}
     </SafeAreaView>
-  );
+    ):(<SinupNav />))
+  ); //return
 }
 
 export default HomeTabs;

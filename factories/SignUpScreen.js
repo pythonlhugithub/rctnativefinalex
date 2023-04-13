@@ -39,8 +39,8 @@ export default class SignUpScreen extends React.Component {
   }
 
   componentDidMount() {
-   // this.setState({nav: this.props.navigation})
-   // console.log(this.props.navigation)
+   this.setState({nav: this.props.navigation})
+   console.log(this.props.navigation)
   }
 
   setUserid = () => {
@@ -212,7 +212,6 @@ export default class SignUpScreen extends React.Component {
             <Text style={{alignSelf: 'flex-end'}}>
               Already have an Account?
               <Text onPress={this.openLogin} style={{color: 'blue'}}>
-                {' '}
                 Log In
               </Text>{' '}
             </Text>
