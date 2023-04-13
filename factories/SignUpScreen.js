@@ -14,7 +14,7 @@ import {
   Linking,
   Alert,
 } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, useTheme} from '@react-navigation/native';
 import imy from '../assets/aio1.jpg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios';
@@ -34,13 +34,13 @@ export default class SignUpScreen extends React.Component {
       UserAddress: '',
       errorText: '',
       isRegisterSuccess: false,
-      nav: null
+      nav: null,
     };
   }
 
   componentDidMount() {
-   this.setState({nav: this.props.navigation})
-   console.log(this.props.navigation)
+    this.setState({nav: this.props.navigation});
+    //console.log(this.props.navigation)
   }
 
   setUserid = () => {
@@ -52,7 +52,6 @@ export default class SignUpScreen extends React.Component {
       id = IdinStorage ? IdinStorage : '';
       return id;
     });
-    return id;
   };
 
   handleSubmitButton = () => {
@@ -94,28 +93,17 @@ export default class SignUpScreen extends React.Component {
   };
 
   openexternalLogin = async () => {
-
     const url = 'https://google.com';
     try {
       await Linking.openURL(url);
     } catch (err) {
       Alert.alert(`Don't know how to open this URL: ${url}`);
     }
-    
   };
 
   openLogin = () => this.props.navigation.navigate('Login', {name: 'Login'});
 
   render() {
-    //setTimeout(() => {
-    // this.setState({loading: false});
-    // }, 2 000);
-
-    // AsyncStorage.clear();
-    // AsyncStorage.getItem('isSignUp').then(IdinStorage => {
-    //   idd = IdinStorage ? IdinStorage : '';
-    // });  //issignup is clear
-
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'lightblue'}}>
         <ScrollView
@@ -124,34 +112,8 @@ export default class SignUpScreen extends React.Component {
             justifyContent: 'center',
             alignContent: 'center',
           }}>
-          {/* <View style={{alignItems: 'center'}}>
-            <Image
-              source={imy}
-              style={{
-                width: 450,
-                height: 200,
-                margin: 0,
-              }}
-            />
-          </View> */}
           <KeyboardAvoidingView enabled>
             <View style={styles.SectionStyle}>
-              {/* <View
-                style={{
-                  height: 80,
-                  backgroundColor: '#34aeeb',
-                  alignItems: 'stretch',
-                }}>
-                <Text
-                  style={{
-                    justifyContent: 'center',
-                    fontSize: 25,
-                    fontWeight: 'bold',
-                    color: 'white',
-                  }}>
-                  Sign Up
-                </Text>
-              </View> */}
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={userName => this.setState({UserName: userName})}
