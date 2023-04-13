@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {FlatList, View, Text, StyleSheet} from 'react-native';
+import {FlatList,Modal, Alert, View, Text, StyleSheet, Button} from 'react-native';
 import Axios from 'axios';
-import {ScrollView} from 'react-native-gesture-handler';
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -17,48 +16,60 @@ export default class HomeScreen extends React.Component {
       errorText: '',
       isRegisterSuccess: false,
       results: [],
+      isModalVisible: false,
     };
   }
   componentDidMount() {
-    Axios('http://10.0.2.2:5221/api/mplans/').then(res => {
+    Axios('http://10.0.2.2:5221/api/mplans/1').then(res => {
       this.setState(
         {
           dataSource: res.data,
         },
         () => {
-          ds = this.state.dataSource;
+          let ds=[];
+          ds.push(this.state.dataSource); //only current data is shown, so push it
           this.setState({results: ds}); //set data to output
         },
       ); //setstate
     }); //top then
   } //didamoutny
 
-  handleSubmitButton = () => {};
+
+  handleModal=()=>{
+    Alert.alert('clicked')
+  }
+  handleSubmitButton = (id) => {
+    console.log(id);
+    // return (
+    //   <View style={styles.container}>
+    //   <Text style={styles.title}>Tab One</Text>
+    //   <View style={styles.separator} />
+    //   <Button title="button" onPress={this.handleModal} />
+    //   <Modal isVisible={this.state.isModalVisible}>
+    //     <View style={{ flex: 1 }}>
+    //       <Text>Hello!</Text>
+    //       <Button title="Hide modal" onPress={this.handleModal} />
+    //     </View>
+    //   </Modal>
+    // </View>
+    // )
+  };
 
   render() {
     return this.state.results.map(data => {
       return (
         <View style={[styles.container, {width: 400}]}>
           <View style={styles.column1}>
-            <View style={styles.item}>
-              <Text style={styles.itm}>Bill Amount: {data.billAmt}</Text>
+            <View style={styles.item} >
+              <Text style={styles.itm}  onPress={this.handleSubmitButton.bind(this,data.id)}>Bill Amount: {data.billAmt}</Text>
             </View>
             <View style={styles.item}>
-            <Text style={styles.itm}>Bill Type: {data.billType}</Text>
-            </View>
-            <View style={styles.item}>
-            <Text style={styles.itm}>Pay Due Date: {data.payduedate}</Text>
+              <Text style={styles.itm}>Pay Due Date: {data.payduedate}</Text>
             </View>
           </View>
           <View style={styles.column2}>
             <View style={styles.item}>
-            <Text style={styles.itm}>Plan Name: {data.planName}</Text>
-            </View>
-            <View style={styles.item}>
-            <Text style={styles.itm}>User Id: {data.userId}</Text>
-            </View>
-            <View style={styles.item}>
-            <Text style={styles.itm}>{}</Text>
+              <Text style={styles.itm}>Plan Name: {data.planName}</Text>
             </View>
           </View>
         </View>
@@ -117,11 +128,26 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     flexShrink: 0,
     borderRadius: 6,
-    borderWidth:2,
+    borderWidth: 2,
     borderColor: 'white',
   },
-  itm:{alignSelf:'center', fontWeight: 'bold', color:'yellow', fontSize:14},
-  column1: {borderRadius: 6},
-  column2: {borderRadius: 6},
-});
+  itm: {alignSelf: 'center', fontWeight: 'bold', color: 'yellow', fontSize: 14},
+  column1: {borderRadius: 6, height:140},
+  column2: {borderRadius: 6, height:140},
  
+ 
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: "400",
+    textAlign: "center",
+  },
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: "80%",
+  },
+});
