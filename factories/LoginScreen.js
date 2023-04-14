@@ -1,40 +1,29 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  ScrollView,
-  KeyboardAvoidingView,
-  TextInput,
-  TouchableOpacity,
-  Button,
-  Linking,
-} from 'react-native';
+
+import {View, StyleSheet, TextInput, Button} from 'react-native';
+
 import Axios from 'axios';
-import imy from '../assets/aio1.jpg';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import Loader from './Loader';
-
 export default class LoginScreen extends React.Component {
-  constructor(navigation) {
-    super(navigation);
+  constructor(props) {
+    super(props);
     this.state = {
       User_Id: '',
       loading: true,
-      UserEmail: '',
-      UserName: '',
-      UserPassword: '',
-      UserAge: 0,
-      UserAddress: '',
       errorText: '',
+      pin: '',
       isRegisterSuccess: false,
+      ispinexist: false,
     };
   }
 
   componentDidMount() {}
-
+  
+  openSignup = () => this.props.navigation.navigate('Sign Up', {name: 'Sign Up'});
+  openHometabs = () => this.props.navigation.navigate('Home', {name: 'Home'});
+  
   setUserid = () => {
     AsyncStorage.setItem('User_Id', JSON.stringify('addone'));
   };
@@ -44,55 +33,61 @@ export default class LoginScreen extends React.Component {
       id = IdinStorage ? IdinStorage : '';
       return id;
     });
-    return id;
   };
 
-  handleSubmitButton = (pinnumber) => {
-
-  //  var ss=Axios('http://localhost:3000/data/?pinno='+pinnumber);
-  //  if(ss===null){
-  //   console.log('no successful, try again');
-  //  };
-
+  onChangePin = value => {
+    this.setState({pin: value});
   };
 
+  handleSubmitButton = () => {
+    if (!this.state.pin.trim()) {
+      alert('enter a pin');
+      return;
+    }
+    //console.log('https://10.0.2.2:5221/api/Logins/' + this.state.pin);
+    Axios('http://10.0.2.2:5221/api/Logins/' + this.state.pin).then(res => {
+    console.log(res.data.fourDgit);
+    console.log( this.state.pin);
+    if (res.data.fourDgit == this.state.pin) {
+        this.openHometabs();
+        this.setState({pin:''})
+      }
+      }).catch((err)=>{
+        this.openSignup();
+        this.setState({pin:''});
+        console.log(err);
+      }
+      );
+ };
   render() {
-    //setTimeout(() => {
-    // this.setState({loading: false});
-    // }, 2000);
-
+    const {pin} = this.state;
     return (
       <View style={{flex: 1, backgroundColor: 'lightblue'}}>
-        <ScrollView
-          keyboardShouldPersistTaps="handled"
-          contentContainerStyle={{
-            justifyContent: 'center',
-            alignContent: 'center',
-          }}>
-          <KeyboardAvoidingView enabled>
-            <View style={styles.SectionStyle}>
-              <TextInput
-                style={styles.inputStyle}
-                onChangeText={userName => this.setState({UserName: userName})}
-                underlineColorAndroid="#f000"
-                placeholder="Enter Your PIN"
-                placeholderTextColor="#8b9cb5"
-                autoCapitalize="sentences"
-                returnKeyType="next"
-                keyboardType="numeric"
-                blurOnSubmit={false}
-              />
-            </View>
-
-            <View style={{marginTop: 150, flex: 1}}>
-              <Button
-                title="Log In"
-                style={styles.buttonStyle}
-                onPress={this.handleSubmitButton('hello')}
-              />
-            </View>
-          </KeyboardAvoidingView>
-        </ScrollView>
+        <View style={styles.SectionStyle}>
+          <TextInput
+            style={styles.inputStyle}
+            value={pin}
+            onChangeText={this.onChangePin}
+            placeholder="Pin"
+            keyboardType="numeric"
+            maxLength={4}
+            onBlur={() => {
+              if (!this.state.pin.trim()) {
+                alert('enter a pin');
+                return;
+              } else {
+                console.log('validated');
+              }
+            }}
+          />
+        </View>
+        <View style={{marginTop: 150, flex: 1}}>
+          <Button
+            title="Log In"
+            style={styles.buttonStyle}
+            onPress={this.handleSubmitButton}
+          />
+        </View>
       </View>
     );
   }
@@ -131,7 +126,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   SectionStyle: {
-    marginTop:140,
+    marginTop: 140,
     height: 80,
   },
 });

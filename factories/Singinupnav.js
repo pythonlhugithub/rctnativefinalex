@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUpScreen from './SignUpScreen';
 import LoginScreen from './LoginScreen';
+import HomeScreen from './HomeScreen';
 
 export default class SinupNav extends React.Component {
   constructor(props) {
@@ -42,6 +43,20 @@ export default class SinupNav extends React.Component {
             component={LoginScreen}
             options={{
               title: 'Login',
+              headerTitleStyle: {
+                color: 'white',
+              },
+              headerStyle: {
+                backgroundColor: '#03adfc',
+              },
+            }}
+          />
+
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              title: 'Home',
               headerTitleStyle: {
                 color: 'white',
               },

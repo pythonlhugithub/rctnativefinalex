@@ -46,7 +46,13 @@ export default class SignUpScreen extends React.Component {
   componentDidMount() {
     this.setState({nav: this.props.navigation});  //important
     //console.log(this.props.navigation)
+
+    this.setState({phoneno: ''}); 
+    this.setState({pin: ''}); 
+    this.setState({confirmpin: ''}); 
+ 
   }
+
   setUserid = () => {
     AsyncStorage.setItem('User_Id', JSON.stringify('addone'));
   };
@@ -151,7 +157,9 @@ export default class SignUpScreen extends React.Component {
     "userName": this.state.confirmpin,
     "password":  "pswd"
    }
-     Axios({
+
+
+  Axios({
     url:'http://10.0.2.2:5221/api/logins',
     method: "POST",
     data: data
@@ -160,6 +168,8 @@ export default class SignUpScreen extends React.Component {
     this.setState({phoneno:'',pin: '', confirmpin: '', isvisible: false});
     this.openLogin();
 })
+
+
 };
 
   render() {
