@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
     height: '50%', 
     alignItems:'stretch', 
     justifyContent:'center', 
-    margiright:20, 
     borderWidth:1, 
     borderColor:'gold'
   },
