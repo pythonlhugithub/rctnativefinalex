@@ -36,18 +36,18 @@ export default class ChangePlan extends React.Component {
 
              <View style={{ flex: 1, flexDirection: "column", alignItems:'center', top:15}}>
 
-             <Text style={styles.itm}>Bill Amount: {data.billAmt}</Text>
+             <Text style={styles.itm} key={data.key}>Bill Amount: {data.billAmt}</Text>
 
              <Button title="Submit" onPress={this.changePlan} style={{width:100,alignItems:'stretch'}}></Button>
 
              </View>
              </View>
              <View style={{ flex: 1, flexDirection: "row", top:0 }}>
-              <Text style={styles.itm}>Pay Due Date: {data.payduedate}</Text>
+              <Text style={styles.itm} key={data.key}>Pay Due Date: {data.payduedate}</Text>
               </View> 
 
               <View style={{ flex: 1, flexDirection: "row", top:0 }}>
-              <Text style={styles.itm}>Plan Name: {data.planName}</Text>
+              <Text style={styles.itm} key={data.key}> Plan Name: {data.planName}</Text>
              </View>
 
           </SafeAreaView>
