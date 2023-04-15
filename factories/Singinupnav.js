@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUpScreen from './SignUpScreen';
 import LoginScreen from './LoginScreen';
 import HomeScreen from './HomeScreen';
+import LogOutScreen from './Logout';
 const Stack = createNativeStackNavigator();
 export default class SinupNav extends React.Component {
   constructor(props) {
@@ -63,6 +64,20 @@ export default class SinupNav extends React.Component {
               },
             }}
           />
+           <Stack.Screen
+            name="Logout"
+            component={LogOutScreen}
+            options={{
+              title: 'Logout',
+              headerTitleStyle: {
+                color: 'white',
+              },
+              headerStyle: {
+                backgroundColor: '#03adfc',
+              },
+            }}
+          />
+          
         </Stack.Navigator>
       </NavigationContainer>
     );

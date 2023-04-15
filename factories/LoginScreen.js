@@ -16,7 +16,12 @@ export default class LoginScreen extends React.Component {
   }
 
   componentDidMount() {  }
-  
+
+  setUserid = () => {
+    console.log(this.state.pin)
+    AsyncStorage.setItem('User_Id', JSON.stringify(this.state.pin));
+  };
+
   openSignup = () =>
     this.props.navigation.navigate('Sign Up', {name: 'Sign Up'});
 
@@ -37,8 +42,9 @@ export default class LoginScreen extends React.Component {
     //console.log('https://10.0.2.2:5221/api/Logins/' + this.state.pin);
     Axios('http://10.0.2.2:5221/api/Logins/' + this.state.pin).then(res => {
         if (res.data.fourDgit == this.state.pin) {
-        this.openHometabs();
-        this.setState({pin:''})
+          this.setUserid();
+          this.openHometabs();
+          this.setState({pin: ''});
       }
       }).catch((err)=>{
         this.openSignup();

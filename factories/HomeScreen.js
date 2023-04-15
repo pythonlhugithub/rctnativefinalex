@@ -35,11 +35,7 @@ export default class HomeScreen extends React.Component {
         <View style={[styles.container, {width: 400}]}>
           <View style={styles.column1}>
             <View style={styles.item} >
-              <Text
-                style={styles.itm}
-                onPress={this.handleSubmitButton.bind(this, data.id)}>
-                Bill Amount: {data.billAmt}
-              </Text>
+              <Text style={styles.itm}>Bill Amount: {data.billAmt}</Text>
             </View>
             <View style={styles.item}>
               <Text style={styles.itm}>Pay Due Date: {data.payduedate}</Text>

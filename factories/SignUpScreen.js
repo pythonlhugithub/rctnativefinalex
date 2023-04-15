@@ -32,10 +32,10 @@ export default class SignUpScreen extends React.Component {
     this.setState({phoneno: ''}); 
     this.setState({pin: ''}); 
     this.setState({confirmpin: ''}); 
- 
-  }
+   }
   setUserid = () => {
-    AsyncStorage.setItem('User_Id', JSON.stringify('addone'));
+    console.log(this.state.pin)
+    AsyncStorage.setItem('User_Id', JSON.stringify(this.state.pin));
   };
   getuserid = () => {
     AsyncStorage.getItem('User_Id').then(IdinStorage => {
@@ -88,16 +88,17 @@ export default class SignUpScreen extends React.Component {
       password: 'pswd'
    };
 
-  Axios({
-    url:'http://10.0.2.2:5221/api/logins',
-    method: "POST",
-    data: data
-   }).then(()=>{
-    console.log('submitted')
-    this.setState({phoneno:'',pin: '', confirmpin: '', isvisible: false});
-    this.openLogin();
-})
-};
+    Axios({
+          url:'http://10.0.2.2:5221/api/logins',
+          method: "POST",
+          data: data
+        }).then(()=>{
+          console.log('submitted')
+            this.setUserid(); //when sign up is succeeded, add id to storage
+          this.setState({phoneno:'',pin: '', confirmpin: '', isvisible: false});//values are cleaned
+          this.openLogin();
+      })
+  };
 
   render() {
     const {phoneno, pin, confirmpin} = this.state;
@@ -151,7 +152,7 @@ export default class SignUpScreen extends React.Component {
                 keyboardType="numeric"
                 maxLength={4}
                 onBlur={() => {  //why disabled this is because openlogin will see the empty onblur
-                  if(this.state.confirmpin!=this.state.pin) {
+                  if (this.state.confirmpin != this.state.pin) {
                     alert('pin is not matched');
                     return;
                   } else {

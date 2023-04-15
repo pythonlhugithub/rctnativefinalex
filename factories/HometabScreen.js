@@ -27,7 +27,7 @@ export default class HomeTabScreen extends React.Component {
   } 
   componentDidMount(){
     this.animatetimeout(); //2 s animate disabled
-    this.setUsrid(); //execute to insert idto storage
+   // this.setUsrid(); //execute to insert idto storage for tesitng only, it is added by sign up
     this.getFlag(); //get flag to decide the following stesp
   }
   removeItem = async () => {
@@ -35,7 +35,7 @@ export default class HomeTabScreen extends React.Component {
   };
   setUsrid = () => {
     this.removeItem(); //clean storage
-    AsyncStorage.setItem('User_Id', '1111'); //add userid
+    AsyncStorage.setItem('User_Id', ''); //add userid
   };
 
   getFlag = () => {
