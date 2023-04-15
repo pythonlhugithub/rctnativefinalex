@@ -16,7 +16,7 @@ export default class SinupNav extends React.Component {
 
   componentDidMount() {
     this.setState({nav: this.props.navigaiton});
-    console.log(this.props.navigation);
+   // console.log(this.props.navigation);
   }
 
   render() {
