@@ -1,38 +1,40 @@
 import React from 'react';
-import {View, StyleSheet, Button} from 'react-native';
+import {View, StyleSheet, Button, Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {NavigationContainer} from '@react-navigation/native';
+import SignUpScreen from './SignUpScreen';
 export default class LogoutScreen extends React.Component {
+ 
   constructor(props) {
     super(props);
     this.state = {User_Id: ''};
-  };
+  }
 
-  cleanUsrid = () => {
-    this.removeItem(); //clean storage
-    AsyncStorage.setItem('User_Id', ''); // reset if it does not work.
-    this.openSignup();
-  };
+  componentDidMount() {}
 
   removeItem = async () => {
     await AsyncStorage.clear();
+    Alert.alert('clicked')
+    this.setState({User_Id:''})
+    console.log(this.state.User_Id)
   };
 
-  openSignup = () =>
-    this.props.navigation.navigate('Sign Up', {name: 'Sign Up'});
-  
   render() {
+
     const {User_Id} = this.state;
+
     return (
+      (this.state.User_Id==null)?(
       <View style={{flex: 1, backgroundColor: 'lightblue'}}>
         <View style={{marginTop: 150, flex: 1}}>
           <Button
             title="Log Out"
             style={styles.buttonStyle}
-            onPress={this.cleanUsrid}
+            onPress={this.removeItem}
           />
         </View>
       </View>
+      ):(<SignUpScreen />)
+
     );
   }
 }

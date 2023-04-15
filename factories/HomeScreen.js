@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { Alert, View, Text, StyleSheet, Button, SafeAreaView} from 'react-native';
 import Axios from 'axios';
- export default class HomeScreen extends React.Component {
+import AsyncStorage from '@react-native-async-storage/async-storage';
+export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       User_Id: '',
       loading: true,
-      UserEmail: '',
+      hasUserid: false,
       UserName: '',
       UserPassword: '',
       UserAge: 0,
@@ -19,6 +20,9 @@ import Axios from 'axios';
     };
   }
   componentDidMount() {
+
+    this.getuserid();
+
     Axios('http://10.0.2.2:5221/api/mplans/1').then(res => {
       this.setState({dataSource: res.data}, () => {
         let ds = [];
@@ -27,20 +31,29 @@ import Axios from 'axios';
         },
       ); //setstate
     }); //top then
+
   } //didamoutny
 
+  getuserid = () => {
+    AsyncStorage.getItem('User_Id').then(IdinStorage => {
+    if(IdinStorage == ''){
+       this.setState({hasUserid: ''});
+    }
+    else{
+      this.setState({hasUserid: IdinStorage});
+    }
+     console.log(this.state.hasUserid)
+    });
+  };
 
-  doLogOut = () => this.props.navigation.navigate('Logout', {name: 'Logout'});
+  doLogOut = async () =>{
+   await AsyncStorage.clear();
+  } 
 
    render() {
 
     return this.state.results.map(data => {
       return (
-<SafeAreaView>
-{/* <View style={{alignItems:'flex-end'}}>
-  <Button title="Logout" onPress={this.doLogOut} style={{width:60}}></Button>
-</View> */}
-
         <View style={[styles.container, {width: 400}]}>
           <View style={styles.column1}>
             <View style={styles.item} >
@@ -56,9 +69,9 @@ import Axios from 'axios';
             </View>
           </View>
         </View>
-</SafeAreaView>
-      );
+       );
     }); // return
+
   } //render
 }
 
