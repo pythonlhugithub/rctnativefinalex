@@ -19,21 +19,19 @@ export default class LoginScreen extends React.Component {
     };
   }
 
-  componentDidMount() {}
-  
-  openSignup = () => this.props.navigation.navigate('Sign Up', {name: 'Sign Up'});
-  openHometabs = () => this.props.navigation.navigate('Home', {name: 'Home'});
-  
-  setUserid = () => {
-    AsyncStorage.setItem('User_Id', JSON.stringify('addone'));
-  };
+  componentDidMount() {
 
-  getuserid = () => {
-    AsyncStorage.getItem('User_Id').then(IdinStorage => {
-      id = IdinStorage ? IdinStorage : '';
-      return id;
-    });
-  };
+  }
+  
+
+  openSignup = () =>
+    this.props.navigation.navigate('Sign Up', {name: 'Sign Up'});
+
+  openHometabs = () =>
+  {
+    this.props.navigation.navigate('Home', {name: 'Home'})
+  }
+    
 
   onChangePin = value => {
     this.setState({pin: value});

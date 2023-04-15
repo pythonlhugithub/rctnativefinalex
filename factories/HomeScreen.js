@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FlatList,Modal, Alert, View, Text, StyleSheet, Button} from 'react-native';
+import { FlatList, Modal, Alert, View, Text, StyleSheet, Button} from 'react-native';
 import Axios from 'axios';
 
 export default class HomeScreen extends React.Component {

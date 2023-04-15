@@ -4,7 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUpScreen from './SignUpScreen';
 import LoginScreen from './LoginScreen';
 import HomeScreen from './HomeScreen';
-
+const Stack = createNativeStackNavigator();
 export default class SinupNav extends React.Component {
   constructor(props) {
     super(props);
@@ -16,15 +16,14 @@ export default class SinupNav extends React.Component {
 
   componentDidMount() {
     this.setState({nav: this.props.navigaiton});
-    console.log(this.props.nav);
+    console.log(this.props.navigation);
   }
 
   render() {
-    Stack = createNativeStackNavigator();
-
     return (
       <NavigationContainer>
         <Stack.Navigator>
+
           <Stack.Screen
             name="Sign Up"
             component={SignUpScreen}
@@ -51,7 +50,6 @@ export default class SinupNav extends React.Component {
               },
             }}
           />
-
           <Stack.Screen
             name="Home"
             component={HomeScreen}

@@ -1,10 +1,7 @@
 import * as React from 'react';
-import {useEffect} from 'react';
 import {
-  Pressable,
   SafeAreaView,
   View,
-  Text,
   Image,
   ActivityIndicator,
   StyleSheet,
@@ -23,40 +20,48 @@ import SinupNav from './Singinupnav';
 
 const Tab = createBottomTabNavigator();
 
-function HomeTabs(props) {
-
-  const removeItem = async () => {
+export default class HomeTabScreen extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {animatingl: true, flag: false};
+  } 
+  componentDidMount(){
+    this.animatetimeout(); //2 s animate disabled
+    this.setUsrid(); //execute to insert idto storage
+    this.getFlag(); //get flag to decide the following stesp
+  }
+  removeItem = async () => {
     await AsyncStorage.clear();
   };
-
-  const setUsrid = () => {
-    removeItem(); //clean storage
-    AsyncStorage.setItem('User_Id', ''); //add userid
+  setUsrid = () => {
+    this.removeItem(); //clean storage
+    AsyncStorage.setItem('User_Id', '1111'); //add userid
   };
 
-  setUsrid(); //execute to insert idto storage
-
-  const [animatingl, setAnimating] = React.useState(true);
-  const [flag, setFlag] = React.useState('');
-
-  useEffect(() => {
-    (async () => {
-      const x = await await AsyncStorage.getItem('User_Id').then(res => {
-        console.log(res)
-        return res===null ? true : false;  //if userid exists, not null, go to home page
+  getFlag = () => {
+    AsyncStorage.getItem('User_Id').then(
+      res =>{
+              if (res == null) 
+            {
+              this.setState({flag : false});
+            }else{
+              this.setState({flag : true});
+            }
       });
-      setFlag(x);
-    })();
-  }, [flag]);
+  };
+      
+  animatetimeout=()=>{
+    setTimeout(() => {
+      this.setState({animatingl: false});
+    }, 2000);
+  }
 
-  // console.log(flag);
-
-  setTimeout(() => {
-    setAnimating(false);
-  }, 2000);
+render(){
+  const {animatingl, flag} = this.state;
+  console.warn(flag); //flag=true, show home page, or show sign up
 
   return (
-    (!flag?(
+    (flag?(
     <SafeAreaView>
       {animatingl ? (
         <View style={styles.container}>
@@ -118,11 +123,26 @@ function HomeTabs(props) {
         </View>
       )}
     </SafeAreaView>
-    ):(<SinupNav />))
+    ):(
+
+          (animatingl ? (
+        <View style={styles.container}>
+          <ActivityIndicator
+            animating={animatingl}
+            color="white"
+            style={styles.activityIndicator}
+          />
+          <Image source={imy} style={styles.imgflex} />
+        </View>
+        
+      ) : (<SinupNav />))
+  ))
+
   ); //return
+  } //render
 }
 
-export default HomeTabs;
+
 const styles = StyleSheet.create({
   imgflex: {width: 500, height: 800, alignItems: 'stretch'},
   container: {

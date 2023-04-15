@@ -10,7 +10,7 @@ import {
 
 import imy from '../assets/aio1.jpg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import HomeTabs from './Hometab';
+import HomeTabs from './Hometabxxx';
 import LoginScreen from './LoginScreen';
 import {NavigationContainer} from '@react-navigation/native'
 export default class SplashScreen extends React.Component {
