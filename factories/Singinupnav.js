@@ -4,7 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUpScreen from './SignUpScreen';
 import LoginScreen from './LoginScreen';
 import HomeScreen from './HomeScreen';
-import LogOutScreen from './Logout';
+import LogOutScreen from './LogoutScreen';
 const Stack = createNativeStackNavigator();
 export default class SinupNav extends React.Component {
   constructor(props) {

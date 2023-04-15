@@ -11,5 +11,5 @@ import ContactUs from './factories/ContactUs'
 import SinupNav from './factories/Singinupnav'
 import Crudjs from './factories/Crudjs';
 import HomeTabScreen from './factories/HometabScreen';
-import LogOutScreen from './factories/Logout'
+import LogOutScreen from './factories/LogoutScreen'
 AppRegistry.registerComponent(appName, () => HomeTabScreen);

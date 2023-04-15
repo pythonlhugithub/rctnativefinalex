@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Alert, View, Text, StyleSheet} from 'react-native';
+import { Alert, View, Text, StyleSheet, Button, SafeAreaView} from 'react-native';
 import Axios from 'axios';
-export default class HomeScreen extends React.Component {
+ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,9 +29,18 @@ export default class HomeScreen extends React.Component {
     }); //top then
   } //didamoutny
 
+
+  doLogOut = () => this.props.navigation.navigate('Logout', {name: 'Logout'});
+
    render() {
+
     return this.state.results.map(data => {
       return (
+<SafeAreaView>
+{/* <View style={{alignItems:'flex-end'}}>
+  <Button title="Logout" onPress={this.doLogOut} style={{width:60}}></Button>
+</View> */}
+
         <View style={[styles.container, {width: 400}]}>
           <View style={styles.column1}>
             <View style={styles.item} >
@@ -47,6 +56,7 @@ export default class HomeScreen extends React.Component {
             </View>
           </View>
         </View>
+</SafeAreaView>
       );
     }); // return
   } //render

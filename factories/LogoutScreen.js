@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Button} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NavigationContainer} from '@react-navigation/native';
-export default class LogOutScreen extends React.Component {
+export default class LogoutScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {User_Id: ''};
