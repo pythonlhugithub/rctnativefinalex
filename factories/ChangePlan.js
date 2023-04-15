@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {FlatList, View, Text, StyleSheet} from 'react-native';
+import {Button, View, Text, StyleSheet, Alert, SafeAreaView} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios';
-
+ 
 export default class ChangePlan extends React.Component {
   constructor(props) {
     super(props);
@@ -34,26 +34,41 @@ export default class ChangePlan extends React.Component {
     }); //top then
   } //didamoutny
 
-  handleSubmitButton = () => {};
+  changePlan = () => {
+    Alert.alert ("the plan has been changed")
+  };
 
   render() {
     return this.state.results.map(data => {
       return (
-        <View style={[styles.container, {width: 400}]}>
-          <View style={styles.column1}>
-            <View style={styles.item}>
-              <Text style={styles.itm}>Bill Amount: {data.billAmt}</Text>
-            </View>
-            <View style={styles.item}>
+
+        <SafeAreaView style={[styles.container, {width: 400}]}>
+
+             <View style={{ flex: 1, flexDirection: "row" }}>
+
+             <View style={{ flex: 1, flexDirection: "column", alignItems:'center', top:15}}>
+
+             <Text style={styles.itm}>Bill Amount: {data.billAmt}</Text>
+
+             <Button title="Submit" onPress={this.changePlan} style={{width:100,alignItems:'stretch'}}></Button>
+
+             </View>
+             </View>
+             <View style={{ flex: 1, flexDirection: "row", top:0 }}>
               <Text style={styles.itm}>Pay Due Date: {data.payduedate}</Text>
-            </View>
-          </View>
-          <View style={styles.column2}>
-            <View style={styles.item}>
+              </View> 
+
+              <View style={{ flex: 1, flexDirection: "row", top:0 }}>
               <Text style={styles.itm}>Plan Name: {data.planName}</Text>
-            </View>
-          </View>
-        </View>
+             </View>
+
+           
+
+          </SafeAreaView>
+
+
+      
+      
       );
     }); // return
   } //render
@@ -67,6 +82,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    height: 20,
   },
   itemcontainer: {
     justifyContent: 'center',
@@ -102,8 +118,8 @@ const styles = StyleSheet.create({
     // alignItems: 'flex-start' // if you want to fill rows left to right
   },
   item: {
-    flex: 0.5, //why this doesnt work???
-    height: 20,
+    flex:0.5, //why this doesnt work???
+   
     padding: 10,
     backgroundColor: 'skyblue',
     flexGrow: 1,
@@ -112,7 +128,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'white',
   },
-  itm: {alignSelf: 'center', fontWeight: 'bold', color: 'yellow', fontSize: 14},
+  itm: {alignSelf: 'stretch', fontWeight: 'bold', color: 'blue', fontSize: 14},
   column1: {borderRadius: 6, height:140},
   column2: {borderRadius: 6, height:140},
 });

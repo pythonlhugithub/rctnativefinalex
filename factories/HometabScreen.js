@@ -87,6 +87,12 @@ render(){
                 component={HomeScreen}
                 options={{
                   title: 'Home page',
+                  headerTitleStyle: {
+                    color: 'white',
+                  },
+                  headerStyle: {
+                    backgroundColor: '#03adfc',
+                  },
                   tabBarIcon: ({size, focused, color}) => {
                     return (
                       <Image style={{width: 30, height: 30}} source={imhome} />
@@ -99,6 +105,12 @@ render(){
                 component={ChangePlan}
                 options={{
                   title: 'Change plan',
+                  headerTitleStyle: {
+                    color: 'white',
+                  },
+                  headerStyle: {
+                    backgroundColor: '#03adfc',
+                  },
                   tabBarIcon: (size, focused, color) => {
                     return (
                       <Image style={{width: 30, height: 30}} source={imcl} />
@@ -111,6 +123,12 @@ render(){
                 component={ContactUs}
                 options={{
                   title: 'Contact us',
+                  headerTitleStyle: {
+                    color: 'white',
+                  },
+                  headerStyle: {
+                    backgroundColor: '#03adfc',
+                  },
                   tabBarIcon: (size, focused, color) => {
                     return (
                       <Image style={{width: 30, height: 30}} source={imct} />
