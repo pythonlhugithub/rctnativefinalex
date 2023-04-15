@@ -59,7 +59,6 @@ export default class HomeTabScreen extends React.Component {
 render(){
   const {animatingl, flag} = this.state;
   console.warn(flag); //flag=true, show home page, or show sign up
-
   return (
     (flag?(
     <SafeAreaView>
@@ -142,8 +141,7 @@ render(){
       )}
     </SafeAreaView>
     ):(
-
-          (animatingl ? (
+      (animatingl ? (
         <View style={styles.container}>
           <ActivityIndicator
             animating={animatingl}
@@ -155,11 +153,9 @@ render(){
         
       ) : (<SinupNav />))
   ))
-
   ); //return
   } //render
 }
-
 
 const styles = StyleSheet.create({
   imgflex: {width: 500, height: 800, alignItems: 'stretch'},
@@ -176,6 +172,5 @@ const styles = StyleSheet.create({
     margin: 0,
     height: 400,
   },
-
   ActivityIndicator: {height: 400, backgroundcolor: 'red'},
 });

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Button, View, Text, StyleSheet, Alert, SafeAreaView} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios';
  
 export default class ChangePlan extends React.Component {
@@ -8,31 +7,20 @@ export default class ChangePlan extends React.Component {
     super(props);
     this.state = {
       User_Id: '',
-      loading: true,
-      UserEmail: '',
-      UserName: '',
-      UserPassword: '',
-      UserAge: 0,
-      UserAddress: '',
-      errorText: '',
-      isRegisterSuccess: false,
       results: [],
     };
   }
 
   componentDidMount() {
     Axios('http://10.0.2.2:5221/api/mplans/').then(res => {
-      this.setState(
-        {
-          dataSource: res.data,
-        },
+      this.setState({dataSource: res.data},
         () => {
           ds = this.state.dataSource;
           this.setState({results: ds}); //set data to output
         },
       ); //setstate
     }); //top then
-  } //didamoutny
+  };
 
   changePlan = () => {
     Alert.alert ("the plan has been changed")
@@ -62,17 +50,12 @@ export default class ChangePlan extends React.Component {
               <Text style={styles.itm}>Plan Name: {data.planName}</Text>
              </View>
 
-           
-
           </SafeAreaView>
 
-
-      
-      
       );
     }); // return
   } //render
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -119,7 +102,6 @@ const styles = StyleSheet.create({
   },
   item: {
     flex:0.5, //why this doesnt work???
-   
     padding: 10,
     backgroundColor: 'skyblue',
     flexGrow: 1,
@@ -129,6 +111,6 @@ const styles = StyleSheet.create({
     borderColor: 'white',
   },
   itm: {alignSelf: 'stretch', fontWeight: 'bold', color: 'blue', fontSize: 14},
-  column1: {borderRadius: 6, height:140},
-  column2: {borderRadius: 6, height:140},
+  column1: {borderRadius: 6, height: 140},
+  column2: {borderRadius: 6, height: 140}
 });

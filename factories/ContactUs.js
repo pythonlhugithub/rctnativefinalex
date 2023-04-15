@@ -1,13 +1,11 @@
 import * as React from 'react';
-import {FlatList, View, Text, StyleSheet, Button} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Picker } from '@react-native-picker/picker';
-import { TextInput } from 'react-native-gesture-handler';
+import {View, Text, StyleSheet, Button, TextInput} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 import Axios from 'axios'
 export default class ContactUs extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {selectedValue: '', txtNote:''};
+    this.state = {selectedValue: '', txtNote: ''};
   }
 
   componentDidMount() {}
@@ -16,27 +14,24 @@ export default class ContactUs extends React.Component {
     console.log('clicked');
   };
 
-  onChangeTxtNote=(value)=>{
-    this.setState({txtNote:value})
+  onChangeTxtNote = value => {
+    this.setState({txtNote: value})
   }
 
-
-
-
   submitCont=(e)=>{
- e.preventDefault();
-    var data={
-      "id": 0,
-      "category": this.state.selectedValue,
-      "explanation": this.state.txtNote
+    e.preventDefault(); //important, or all categories are inserted
+    var data = {
+      id: 0,
+      category: this.state.selectedValue,
+      explanation: this.state.txtNote,
     };
 
-    if(!this.state.selectedValue.trim()){
-      alert('pelase select a category first');
+    if (!this.state.selectedValue.trim()) {
+      alert('Please select a category first');
       return;
     };
     if(!this.state.txtNote.trim()){
-      alert('pelase enter some comments before submit');
+      alert('Please enter some comments before submit');
       return;
     }
     Axios({
@@ -50,9 +45,8 @@ export default class ContactUs extends React.Component {
     })
   };
 
-
   render() {
-   const {selectedValue, txtNote}=this.state;
+    const {selectedValue, txtNote} = this.state;
     return (
         <View
            selectedstyle={{

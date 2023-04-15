@@ -1,11 +1,7 @@
 import React from 'react';
-
 import {View, StyleSheet, TextInput, Button} from 'react-native';
-
 import Axios from 'axios';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 export default class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -19,11 +15,8 @@ export default class LoginScreen extends React.Component {
     };
   }
 
-  componentDidMount() {
-
-  }
+  componentDidMount() {  }
   
-
   openSignup = () =>
     this.props.navigation.navigate('Sign Up', {name: 'Sign Up'});
 
@@ -32,7 +25,6 @@ export default class LoginScreen extends React.Component {
     this.props.navigation.navigate('Home', {name: 'Home'})
   }
     
-
   onChangePin = value => {
     this.setState({pin: value});
   };
@@ -44,9 +36,7 @@ export default class LoginScreen extends React.Component {
     }
     //console.log('https://10.0.2.2:5221/api/Logins/' + this.state.pin);
     Axios('http://10.0.2.2:5221/api/Logins/' + this.state.pin).then(res => {
-    console.log(res.data.fourDgit);
-    console.log( this.state.pin);
-    if (res.data.fourDgit == this.state.pin) {
+        if (res.data.fourDgit == this.state.pin) {
         this.openHometabs();
         this.setState({pin:''})
       }

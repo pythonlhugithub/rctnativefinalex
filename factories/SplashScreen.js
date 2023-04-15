@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Text,
   View,
   StyleSheet,
   Image,
@@ -11,8 +10,6 @@ import {
 import imy from '../assets/aio1.jpg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeTabs from './Hometabxxx';
-import LoginScreen from './LoginScreen';
-import {NavigationContainer} from '@react-navigation/native'
 export default class SplashScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +18,6 @@ export default class SplashScreen extends React.Component {
       User_Id: '',
     };
   }
-
   componentDidMount() {
     this.setUserid;
   }
@@ -35,7 +31,6 @@ export default class SplashScreen extends React.Component {
       id = IdinStorage ? IdinStorage : '';
       return id;
     });
-    return id;
   };
 
   removeItem = async () => {
@@ -50,8 +45,12 @@ export default class SplashScreen extends React.Component {
     return (
 
       <SafeAreaView style={styles.container}>
-        <ActivityIndicator animating={this.state.animating} color="white" style={styles.activityIndicator}/> 
-        {(this.state.animating?
+        <ActivityIndicator
+          animating={this.state.animating}
+          color="white"
+          style={styles.activityIndicator}
+        />
+        {this.state.animating ? (
         (<View style={styles.container}>
           <Image source={imy} style={styles.imgflex} />
         </View>):(

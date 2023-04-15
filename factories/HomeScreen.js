@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { FlatList, Modal, Alert, View, Text, StyleSheet, Button} from 'react-native';
+import { Alert, View, Text, StyleSheet} from 'react-native';
 import Axios from 'axios';
-
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -21,47 +20,26 @@ export default class HomeScreen extends React.Component {
   }
   componentDidMount() {
     Axios('http://10.0.2.2:5221/api/mplans/1').then(res => {
-      this.setState(
-        {
-          dataSource: res.data,
-        },
-        () => {
-          let ds=[];
-          ds.push(this.state.dataSource); //only current data is shown, so push it
-          this.setState({results: ds}); //set data to output
+      this.setState({dataSource: res.data}, () => {
+        let ds = [];
+        ds.push(this.state.dataSource); //only current data is shown, so push it
+        this.setState({results: ds}); //set data to output
         },
       ); //setstate
     }); //top then
   } //didamoutny
 
-
-  handleModal=()=>{
-    Alert.alert('clicked')
-  }
-  handleSubmitButton = (id) => {
-    console.log(id);
-    // return (
-    //   <View style={styles.container}>
-    //   <Text style={styles.title}>Tab One</Text>
-    //   <View style={styles.separator} />
-    //   <Button title="button" onPress={this.handleModal} />
-    //   <Modal isVisible={this.state.isModalVisible}>
-    //     <View style={{ flex: 1 }}>
-    //       <Text>Hello!</Text>
-    //       <Button title="Hide modal" onPress={this.handleModal} />
-    //     </View>
-    //   </Modal>
-    // </View>
-    // )
-  };
-
-  render() {
+   render() {
     return this.state.results.map(data => {
       return (
         <View style={[styles.container, {width: 400}]}>
           <View style={styles.column1}>
             <View style={styles.item} >
-              <Text style={styles.itm}  onPress={this.handleSubmitButton.bind(this,data.id)}>Bill Amount: {data.billAmt}</Text>
+              <Text
+                style={styles.itm}
+                onPress={this.handleSubmitButton.bind(this, data.id)}>
+                Bill Amount: {data.billAmt}
+              </Text>
             </View>
             <View style={styles.item}>
               <Text style={styles.itm}>Pay Due Date: {data.payduedate}</Text>
@@ -134,7 +112,6 @@ const styles = StyleSheet.create({
   itm: {alignSelf: 'center', fontWeight: 'bold', color: 'yellow', fontSize: 14},
   column1: {borderRadius: 6, height:140},
   column2: {borderRadius: 6, height:140},
- 
  
   title: {
     fontSize: 20,
