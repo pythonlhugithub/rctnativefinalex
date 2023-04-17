@@ -12,4 +12,6 @@ import SinupNav from './factories/Singinupnav'
 import Crudjs from './factories/Crudjs';
 import HomeTabScreen from './factories/HometabScreen';
 import LogOutScreen from './factories/LogoutScreen'
-AppRegistry.registerComponent(appName, () => HomeTabScreen);
+import Vwtest from './factories/child/Vwtest';
+import Drawjs from './factories/child/Drawjs';
+AppRegistry.registerComponent(appName, () => Drawjs);
