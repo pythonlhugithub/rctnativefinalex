@@ -1,6 +1,7 @@
 import {AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
+import 'react-native-gesture-handler';  // for drawer 
 
 //import SplashScreen from './factories/SplashScreen'
 import SignUpScreen from './factories/SignUpScreen'
@@ -14,4 +15,9 @@ import HomeTabScreen from './factories/HometabScreen';
 import LogOutScreen from './factories/LogoutScreen'
 import Vwtest from './factories/child/Vwtest';
 import Drawjs from './factories/child/Drawjs';
-AppRegistry.registerComponent(appName, () => Drawjs);
+import Skk from './factories/child/Skk';
+//import Stackjs from './factories/child/Skk';
+import Axiosjs from './factories/child/Axiosjs'
+import Aplp from './factories/child/Lyk';
+import NestNav from './factories/child/NestNav'
+AppRegistry.registerComponent(appName, () => NestNav);
