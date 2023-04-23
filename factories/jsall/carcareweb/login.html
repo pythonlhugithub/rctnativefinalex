@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+
+        <h2>Login </h2>
+        <p id="result"></p>
+        <form id="myForm">
+        <label>Username:</label>
+        <input type="text" id="inp1" name="username"><br>
+        <label>Password: </label>
+        <input type="password" id="inp2" name="password"><br><br>
+        <button type="submit" onclick="submitForm(event)">Submit</button>
+        </form>
+        
+<div>
+    <label>Usernasssme:</label>
+    <input type="text" id="ibnp1" name="useraname"><br>
+    <label>Passssssword: </label>
+    <input type="password" id="ibnp2" name="passaword"><br><br>
+    <button type="button" onclick="fetchData()">fetch</button>
+</div>
+        <script type="module">
+        import logiii, {grName, fetchData} from './loginserver.js'      
+           var myForm = document.getElementById("myForm");
+           var result = document.getElementById("result"); 
+          window.fetchData=fetchData; //very important , module js can be used in local as ususal.
+
+           // now i k ow if html form submit directly, it call its server 
+          // so username paswd is submit as query string directly
+          //if we add fetch api, 
+          //fetch api call remotely
+          //so pass data as a form is required, so url formbody, etc is used in fetch api
+          //this is different from native submit
+
+          //so js file does not allow to use default, we use third party axios to get call
+
+//i have built a js server for my own js html web site!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+window.grName=grName;
+
+           function submitForm(event) {
+              event.preventDefault();        
+            //  myForm.submit();
+                rlt=document.getElementById('reslut')
+                rlt.innerHtml=grName();
+            alert(rlt.innerHtml)
+            // location.assign('./home.html')
+           }
+
+
+
+
+        </script>
+
+
+
+
+
+
+
+
+     </body>
+  
+</html>

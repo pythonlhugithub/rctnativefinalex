@@ -20,4 +20,5 @@ import Skk from './factories/child/Skk';
 import Axiosjs from './factories/child/Axiosjs'
 import Aplp from './factories/child/Lyk';
 import NestNav from './factories/child/NestNav'
-AppRegistry.registerComponent(appName, () => NestNav);
+import Jstrain from './factories/jsall/Jstrain'
+AppRegistry.registerComponent(appName, () => Jstrain);
